@@ -136,7 +136,7 @@ The frontend will run on `http://localhost:3000`
 
 ### Step 1 – Landing Page
 
-![Landing Page](frontend/public/screenshots/image.png)
+![Landing Page](./frontend/public/screenshots/image.png)
 
 When you first visit NeoMeet, you'll see the landing page with options to:
 - **Get Started** - Create a new account and start a meeting
@@ -149,7 +149,7 @@ The page features a clean, modern design with dark mode support.
 
 ### Step 2 – Login or Sign Up
 
-![Authentication Page](frontend/public/screenshots/Screenshot%202025-12-04%20205129.png)
+![Authentication Page](./frontend/public/screenshots/Screenshot%202025-12-04%20205129.png)
 
 On this screen, you can either sign in to your NeoMeet account or create a new one:
 
@@ -166,7 +166,7 @@ On this screen, you can either sign in to your NeoMeet account or create a new o
 
 ### Step 3 – Create or Join a Meeting
 
-![Home Page](frontend/public/screenshots/Screenshot%202025-12-04%20205530.png)
+![Home Page](./frontend/public/screenshots/Screenshot%202025-12-04%20205530.png)
 
 After logging in, you'll reach the home page where you can:
 
@@ -183,7 +183,7 @@ After logging in, you'll reach the home page where you can:
 
 ### Step 4 – Lobby (Camera Preview)
 
-![Lobby Preview](frontend/public/screenshots/Gemini_Generated_Image_evf7rdevf7rdevf7.png)
+![Lobby Preview](./frontend/public/screenshots/Gemini_Generated_Image_evf7rdevf7rdevf7.png)
 
 Before joining the meeting, you'll enter the lobby where you can:
 
@@ -198,7 +198,7 @@ This ensures you're fully prepared before entering the meeting room.
 
 ### Step 5 – Video Call Interface
 
-![Video Meeting](frontend/public/screenshots/image12.png)
+![Video Meeting](./frontend/public/screenshots/image12.png)
 
 **You're Now in the Meeting!**
 
@@ -226,7 +226,7 @@ Messages appear in a modern bubble design with sender names clearly displayed.
 
 ### Step 7 – Meeting Controls (Video, Audio, Share Screen)
 
-![Meeting Controls](frontend/public/screenshots/final0mage.png)
+![Meeting Controls](./frontend/public/screenshots/final0mage.png)
 
 **Use Meeting Tools**
 
