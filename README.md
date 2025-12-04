@@ -100,14 +100,31 @@ cd backend
 npm install
 ```
 
-3. Create a `.env` file in the backend directory:
-```env
-PORT=8000
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret_key
+3. **Create a `.env` file** from the example:
+```bash
+# Copy the example file
+cp .env.example .env
 ```
 
-4. Start the backend server:
+4. **Configure your environment variables** in `.env`:
+```env
+# MongoDB Connection (replace with your actual MongoDB URI)
+MONGODB_URI=mongodb+srv://your_username:your_password@cluster.mongodb.net/neomeet?retryWrites=true&w=majority
+
+# JWT Secret (generate a strong random string)
+JWT_SECRET=your_super_secret_jwt_key_here_change_this
+
+# Server Configuration
+PORT=8000
+NODE_ENV=development
+
+# Frontend URL (for CORS)
+FRONTEND_URL=http://localhost:3000
+```
+
+> **⚠️ IMPORTANT:** Never commit your `.env` file! It's already in `.gitignore` to keep your secrets safe.
+
+5. Start the backend server:
 ```bash
 npm start
 ```
@@ -126,10 +143,22 @@ cd frontend
 npm install
 ```
 
-3. Create a `.env` file in the frontend directory (if needed):
-```env
-REACT_APP_API_URL=http://localhost:8000
+3. **Create a `.env` file** from the example (optional):
+```bash
+# Copy the example file
+cp .env.example .env
 ```
+
+4. **Configure your environment variables** in `.env` (if needed):
+```env
+# Backend API URL
+REACT_APP_API_URL=http://localhost:8000
+
+# WebSocket URL
+REACT_APP_SOCKET_URL=http://localhost:8000
+```
+
+> **Note:** The frontend will use default values if `.env` is not created.
 
 4. Start the React development server:
 ```bash
@@ -285,6 +314,57 @@ vercel --prod
 Or Netlify:
 ```bash
 netlify deploy --prod
+```
+
+## Security Best Practices
+
+### Environment Variables
+
+**⚠️ NEVER commit `.env` files to Git!**
+
+Before pushing code, always verify:
+
+```bash
+git status
+```
+
+✅ It should **NOT** show `.env` files.
+
+If `.env` is tracked, remove it immediately:
+
+```bash
+git rm --cached .env
+git rm --cached backend/.env
+git rm --cached frontend/.env
+git commit -m "Remove .env files from tracking"
+```
+
+### For Collaborators
+
+After cloning the repository:
+
+1. **Copy the example files:**
+```bash
+# In backend folder
+cp .env.example .env
+
+# In frontend folder
+cp .env.example .env
+```
+
+2. **Fill in your own values** in each `.env` file
+
+3. **Never share your `.env` file** - each developer should have their own
+
+### Generating Secure Keys
+
+For JWT_SECRET, generate a strong random string:
+
+```bash
+# Using Node.js
+node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+
+# Or use an online generator (ensure it's a trusted source)
 ```
 
 ## Contributing
