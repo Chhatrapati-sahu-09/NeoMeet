@@ -23,45 +23,50 @@ NeoMeet is a modern, real-time video conferencing application that enables seaml
 - 📱 **Responsive Design** - Works seamlessly across devices
 - ⚡ **Real-Time Signaling** - WebRTC with Socket.io for instant connectivity
 
-## Tech Stack
+## 🚀 Tech Stack
+
+---
 
 ### 🎨 Frontend
 
-![React](https://img.shields.io/badge/React-19.2.0-61DAFB?logo=react&logoColor=black)
-React 19.2.0 – UI component library
+<!-- Frontend Badges -->
+<p>
+  <img src="https://img.shields.io/badge/React-19.2.0-61DAFB?logo=react&logoColor=black" />
+  <img src="https://img.shields.io/badge/Material--UI-v7-007FFF?logo=mui&logoColor=white" />
+  <img src="https://img.shields.io/badge/Socket.io--Client-Real--time-black?logo=socketdotio&logoColor=white" />
+  <img src="https://img.shields.io/badge/React%20Router-v7.9.4-CA4245?logo=reactrouter&logoColor=white" />
+  <img src="https://img.shields.io/badge/WebRTC-P2P%20Streaming-333333?logo=webrtc&logoColor=white" />
+</p>
 
-![Material UI](https://img.shields.io/badge/Material--UI-v7-007FFF?logo=mui&logoColor=white)
-Material-UI v7 – Component library for fast UI development
+**React 19.2.0** – UI component library  
+**Material-UI v7** – Component library for fast UI development  
+**Socket.io-client** – Real-time communication  
+**React Router v7.9.4** – SPA navigation & routing  
+**WebRTC** – Peer-to-peer video & audio streaming  
 
-![Socket.io Client](https://img.shields.io/badge/Socket.io--client-Real--time-black?logo=socket.io&logoColor=white)
-Socket.io-client – Real-time communication
-
-![React Router](https://img.shields.io/badge/React%20Router-v7.9.4-CA4245?logo=reactrouter&logoColor=white)
-React Router v7.9.4 – SPA navigation & routing
-
-![WebRTC](https://img.shields.io/badge/WebRTC-P2P%20Streaming-333333?logo=webrtc&logoColor=white)
-WebRTC – Peer-to-peer video & audio streaming
-
+---
 
 ### ⚙️ Backend
 
-![Node.js](https://img.shields.io/badge/Node.js-Runtime-339933?logo=node.js&logoColor=white)
-Node.js – JavaScript runtime environment
+<!-- Backend Badges -->
+<p>
+  <img src="https://img.shields.io/badge/Node.js-Runtime-339933?logo=node.js&logoColor=white" />
+  <img src="https://img.shields.io/badge/Express.js-5.1.0-000000?logo=express&logoColor=white" />
+  <img src="https://img.shields.io/badge/Socket.io-4.8.1-black?logo=socketdotio&logoColor=white" />
+  <img src="https://img.shields.io/badge/MongoDB-Database-47A248?logo=mongodb&logoColor=white" />
+  <img src="https://img.shields.io/badge/JWT-Authentication-blue?logo=jsonwebtokens" />
+  <img src="https://img.shields.io/badge/bcrypt-Password%20Hashing-orange" />
+</p>
 
-![Express.js](https://img.shields.io/badge/Express.js-5.1.0-000000?logo=express&logoColor=white)
-Express.js 5.1.0 – Web framework
+**Node.js** – JavaScript runtime environment  
+**Express.js 5.1.0** – Web framework  
+**Socket.io 4.8.1** – WebSocket communication  
+**MongoDB** – NoSQL database  
+**JWT** – Authentication tokens  
+**bcrypt** – Password hashing for secure login  
 
-![Socket.io](https://img.shields.io/badge/Socket.io-4.8.1-black?logo=socket.io&logoColor=white)
-Socket.io 4.8.1 – WebSocket communication
+---
 
-![MongoDB](https://img.shields.io/badge/MongoDB-Database-47A248?logo=mongodb&logoColor=white)
-MongoDB – NoSQL database
-
-![JWT](https://img.shields.io/badge/JWT-Authentication-blue?logo=jsonwebtokens)
-JWT – Authentication tokens
-
-![bcrypt](https://img.shields.io/badge/bcrypt-Password%20Hashing-orange)
-bcrypt – Password hashing for secure login
 
 
 ## Folder Structure
