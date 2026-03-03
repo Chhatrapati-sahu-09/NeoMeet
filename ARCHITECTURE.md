@@ -10,7 +10,7 @@ NeoMeet is a real-time video conferencing application built using a modern MERN 
 
 ### System Architecture
 
-![System Architecture](s.png)
+[![System Architecture](s.png)](https://github.com/Chhatrapati-sahu-09/NeoMeet/blob/main/docs/a.png)
 
 ### Application Flow Diagram
 
