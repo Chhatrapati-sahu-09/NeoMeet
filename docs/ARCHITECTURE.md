@@ -6,6 +6,22 @@ NeoMeet is a real-time video conferencing application built using a modern MERN 
 
 ---
 
+## Architecture Diagrams
+
+### System Architecture
+
+![System Architecture](s.png)
+
+### Application Flow Diagram
+
+![Application Flow](<mermaid-diagram%20(1).png>)
+
+### Component Architecture
+
+![Component Architecture](a.png)
+
+---
+
 ## High-Level Architecture Diagram
 
 ```
