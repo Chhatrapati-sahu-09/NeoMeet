@@ -54,14 +54,7 @@ Built using **React, Node.js, WebRTC, and Socket.io**, NeoMeet provides a simple
 
 ## Backend
 
-<p>
-<img src="https://img.shields.io/badge/Node.js-Runtime-339933?logo=node.js&logoColor=white"/>
-<img src="https://img.shields.io/badge/Express.js-5.1.0-000000?logo=express&logoColor=white"/>
-<img src="https://img.shields.io/badge/Socket.io-4.8.1-black?logo=socketdotio&logoColor=white"/>
-<img src="https://img.shields.io/badge/MongoDB-Database-47A248?logo=mongodb&logoColor=white"/>
-<img src="https://img.shields.io/badge/JWT-Authentication-blue?logo=jsonwebtokens"/>
-<img src="https://img.shields.io/badge/bcrypt-Password%20Hashing-orange"/>
-</p>
+[![Backend](https://skillicons.dev/icons?i=nodejs,express,mongodb,socketio,js&perline=8)](https://skillicons.dev)
 
 | Technology | Purpose |
 |-----------|---------|
