@@ -167,12 +167,12 @@ Frontend-->>User: Redirect to meeting page
 
 ---
 
-# Video Meeting Workflow
+## Video Meeting Workflow
 
 The meeting system uses:
 
-- **Socket.io for signaling**
-- **WebRTC for peer-to-peer video communication**
+- Socket.io for signaling  
+- WebRTC for peer-to-peer video communication  
 
 ```mermaid
 sequenceDiagram
@@ -183,19 +183,18 @@ participant UserB
 
 UserA->>SignalingServer: join-call(room)
 
-SignalingServer-->>UserB: user-joined
+SignalingServer-->>UserB: user joined
 
 UserA->>UserB: WebRTC Offer
 
 UserB->>UserA: WebRTC Answer
 
-UserA->>UserB: ICE Candidates
-UserB->>UserA: ICE Candidates
+UserA->>UserB: Send ICE Candidates
+UserB->>UserA: Send ICE Candidates
 
-UserA<->>UserB: Direct Video & Audio Stream
+UserA->>UserB: Start Video Stream
+UserB->>UserA: Start Video Stream
 ```
-
----
 
 # Chat Messaging Workflow
 
@@ -262,22 +261,19 @@ Frontend-->>User: Display meeting cards
 
 ---
 
-# Theme Toggle Workflow
+## Theme Toggle Workflow
 
 ```mermaid
 flowchart TD
 
-User[User clicks theme icon] --> Toggle[toggleTheme()]
+A[User clicks theme icon] --> B[Toggle theme function]
 
-Toggle --> UpdateState[Update darkMode state]
+B --> C[Update dark mode state]
 
-UpdateState --> Save[Save to localStorage]
+C --> D[Save preference in localStorage]
 
-Save --> Rerender[Components re-render with new theme]
+D --> E[UI re renders with new theme]
 ```
-
----
-
 # Logout Workflow
 
 ```mermaid
