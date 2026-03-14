@@ -122,7 +122,6 @@ J --> Q[index.js]
 A --> R[README.md]
 ```
 
----
 
 # Installation
 
