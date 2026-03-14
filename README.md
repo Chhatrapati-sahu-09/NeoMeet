@@ -40,13 +40,7 @@ Built using **React, Node.js, WebRTC, and Socket.io**, NeoMeet provides a simple
 
 ## Frontend
 
-<p>
-<img src="https://img.shields.io/badge/React-19.2.0-61DAFB?logo=react&logoColor=black"/>
-<img src="https://img.shields.io/badge/Material--UI-v7-007FFF?logo=mui&logoColor=white"/>
-<img src="https://img.shields.io/badge/Socket.io--Client-Real--time-black?logo=socketdotio&logoColor=white"/>
-<img src="https://img.shields.io/badge/React%20Router-v7.9.4-CA4245?logo=reactrouter&logoColor=white"/>
-<img src="https://img.shields.io/badge/WebRTC-P2P%20Streaming-333333?logo=webrtc&logoColor=white"/>
-</p>
+[![Frontend](https://skillicons.dev/icons?i=react,html,css,js,materialui&perline=8)](https://skillicons.dev)
 
 | Technology | Purpose |
 |-----------|---------|
