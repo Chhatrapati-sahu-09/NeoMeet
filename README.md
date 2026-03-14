@@ -67,54 +67,59 @@ Built using **React, Node.js, WebRTC, and Socket.io**, NeoMeet provides a simple
 
 ---
 
-# Folder Structure
+## Project Structure
 
-```
-ApnaVideoCall/
+```mermaid
+flowchart TD
 
-backend/
- └─ src/
-    ├─ controllers/
-    │  ├─ socketManager.js
-    │  └─ user.controller.js
-    │
-    ├─ models/
-    │  ├─ meeting.model.js
-    │  └─ user.model.js
-    │
-    ├─ routes/
-    │  └─ users.routes.js
-    │
-    └─ app.js
+A[ApnaVideoCall]
 
-frontend/
- ├─ public/
- │  ├─ screenshots/
- │  └─ index.html
- │
- └─ src/
-    ├─ contexts/
-    │  ├─ AuthContext.jsx
-    │  └─ ThemeContext.jsx
-    │
-    ├─ pages/
-    │  ├─ landing.jsx
-    │  ├─ authentication.jsx
-    │  ├─ home.jsx
-    │  ├─ VideoMeet.jsx
-    │  └─ history.jsx
-    │
-    ├─ styles/
-    │  └─ videoComponent.module.css
-    │
-    ├─ utils/
-    │  └─ withAuth.jsx
-    │
-    ├─ App.js
-    ├─ App.css
-    └─ index.js
+A --> B[backend]
+B --> C[src]
 
-README.md
+C --> D[controllers]
+D --> D1[socketManager.js]
+D --> D2[user.controller.js]
+
+C --> E[models]
+E --> E1[meeting.model.js]
+E --> E2[user.model.js]
+
+C --> F[routes]
+F --> F1[users.routes.js]
+
+C --> G[app.js]
+
+A --> H[frontend]
+
+H --> I[public]
+I --> I1[screenshots]
+I --> I2[index.html]
+
+H --> J[src]
+
+J --> K[contexts]
+K --> K1[AuthContext.jsx]
+K --> K2[ThemeContext.jsx]
+
+J --> L[pages]
+L --> L1[landing.jsx]
+L --> L2[authentication.jsx]
+L --> L3[home.jsx]
+L --> L4[VideoMeet.jsx]
+L --> L5[history.jsx]
+
+J --> M[styles]
+M --> M1[videoComponent.module.css]
+
+J --> N[utils]
+N --> N1[withAuth.jsx]
+
+J --> O[App.js]
+J --> P[App.css]
+J --> Q[index.js]
+
+A --> R[README.md]
 ```
 
 ---
