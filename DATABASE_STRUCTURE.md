@@ -23,8 +23,7 @@ The system currently uses **two collections**:
 ```javascript
 mongoose.connect(process.env.MONGODB_URI);
 
-// Example URI
-// mongodb+srv://username:password@cluster.mongodb.net/neomeet
+
 ```
 
 ### Mongoose Setup
