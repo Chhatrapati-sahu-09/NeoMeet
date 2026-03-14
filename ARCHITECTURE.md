@@ -43,6 +43,8 @@ I --> M[Meetings Collection]
 
 # Application Flow
 
+## Application Flow Diagram
+
 ```mermaid
 sequenceDiagram
 
@@ -54,22 +56,26 @@ participant S as Socket.io Server
 participant P as Peer Client
 
 U->>FE: Open NeoMeet
-FE->>BE: Login/Register Request
-BE->>DB: Validate User Credentials
+
+FE->>BE: Login / Register Request
+BE->>DB: Validate Credentials
 DB-->>BE: Return User Data
 BE-->>FE: Authentication Token
 
 U->>FE: Join Meeting
-FE->>S: join-call event
-S-->>P: Notify user joined
 
-FE->>P: WebRTC Offer
-P->>FE: WebRTC Answer
+FE->>S: join-call(roomId)
+S-->>P: user-joined notification
 
-FE<->>P: Direct P2P Video Stream
+FE->>P: WebRTC Offer (SDP)
+P->>FE: WebRTC Answer (SDP)
+
+FE->>P: Exchange ICE Candidates
+P->>FE: ICE Candidates Response
+
+FE->>P: Start Media Stream
+P->>FE: Receive Media Stream
 ```
-
----
 
 # Component Architecture
 
