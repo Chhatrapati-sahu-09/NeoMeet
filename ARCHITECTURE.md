@@ -2,396 +2,290 @@
 
 ## Overview
 
-NeoMeet is a real-time video conferencing application built using a modern MERN stack architecture with WebRTC for peer-to-peer video communication and Socket.io for real-time signaling.
+NeoMeet is a **real-time video conferencing platform** built using the **MERN stack** with **WebRTC** for peer-to-peer video communication and **Socket.io** for real-time signaling and messaging.
+
+The system follows a **three-layer architecture**:
+
+- Client Layer (React Frontend)
+- Server Layer (Node.js + Express + Socket.io)
+- Data Layer (MongoDB)
+
+This architecture enables **low-latency communication**, **real-time interactions**, and **scalable deployment**.
 
 ---
 
-## Architecture Diagrams
+# System Architecture
 
-### System Architecture
+```mermaid
+flowchart TD
 
-[![System Architecture](s.png)](https://github.com/Chhatrapati-sahu-09/NeoMeet/blob/main/docs/a.png)
+A[User Browser] --> B[React Frontend]
 
-### Application Flow Diagram
+B --> C[HTTP REST API]
+B --> D[Socket.io Connection]
+B --> E[WebRTC Peer Connection]
 
-![Application Flow](<mermaid-diagram%20(1).png>)
+C --> F[Express.js Backend]
 
-### Component Architecture
+D --> G[Socket.io Server]
 
-![Component Architecture](a.png)
+F --> H[Controllers]
+H --> I[MongoDB Database]
 
----
+G --> J[Room Management]
+G --> K[WebRTC Signaling]
 
-## High-Level Architecture Diagram
-
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                              CLIENT LAYER                                    │
-│  ┌─────────────────────────────────────────────────────────────────────┐   │
-│  │                     React Frontend (Port 3000)                       │   │
-│  │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐               │   │
-│  │  │   Landing    │  │    Auth      │  │    Home      │               │   │
-│  │  │    Page      │  │    Page      │  │    Page      │               │   │
-│  │  └──────────────┘  └──────────────┘  └──────────────┘               │   │
-│  │  ┌──────────────┐  ┌──────────────┐                                 │   │
-│  │  │  VideoMeet   │  │   History    │                                 │   │
-│  │  │  Component   │  │    Page      │                                 │   │
-│  │  └──────────────┘  └──────────────┘                                 │   │
-│  │                                                                      │   │
-│  │  ┌─────────────────────────────────────────────────────────────┐   │   │
-│  │  │                    Context Providers                         │   │   │
-│  │  │  ┌─────────────────┐    ┌─────────────────┐                 │   │   │
-│  │  │  │  AuthContext    │    │  ThemeContext   │                 │   │   │
-│  │  │  │  (Auth State)   │    │  (Dark/Light)   │                 │   │   │
-│  │  │  └─────────────────┘    └─────────────────┘                 │   │   │
-│  │  └─────────────────────────────────────────────────────────────┘   │   │
-│  └─────────────────────────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────────────────────┘
-                                      │
-                    ┌─────────────────┼─────────────────┐
-                    │                 │                 │
-              HTTP/REST          Socket.io          WebRTC
-                    │                 │                 │
-                    ▼                 ▼                 ▼
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                              SERVER LAYER                                    │
-│  ┌─────────────────────────────────────────────────────────────────────┐   │
-│  │                   Node.js Backend (Port 8000)                        │   │
-│  │                                                                      │   │
-│  │  ┌──────────────────────────────────────────────────────────────┐  │   │
-│  │  │                      Express.js Server                        │  │   │
-│  │  │  ┌─────────────────┐  ┌─────────────────┐                    │  │   │
-│  │  │  │     Routes      │  │   Controllers   │                    │  │   │
-│  │  │  │  /api/v1/users  │  │ user.controller │                    │  │   │
-│  │  │  └─────────────────┘  └─────────────────┘                    │  │   │
-│  │  └──────────────────────────────────────────────────────────────┘  │   │
-│  │                                                                      │   │
-│  │  ┌──────────────────────────────────────────────────────────────┐  │   │
-│  │  │                    Socket.io Server                           │  │   │
-│  │  │  ┌─────────────────┐                                         │  │   │
-│  │  │  │ socketManager   │  - Room Management                      │  │   │
-│  │  │  │                 │  - Signaling (WebRTC)                   │  │   │
-│  │  │  │                 │  - Chat Messages                        │  │   │
-│  │  │  └─────────────────┘                                         │  │   │
-│  │  └──────────────────────────────────────────────────────────────┘  │   │
-│  └─────────────────────────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────────────────────┘
-                                      │
-                                      ▼
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                              DATA LAYER                                      │
-│  ┌─────────────────────────────────────────────────────────────────────┐   │
-│  │                        MongoDB Database                              │   │
-│  │  ┌─────────────────────┐    ┌─────────────────────┐                │   │
-│  │  │    Users Collection │    │  Meetings Collection │                │   │
-│  │  │  - name             │    │  - user_id           │                │   │
-│  │  │  - username         │    │  - meetingCode       │                │   │
-│  │  │  - password (hash)  │    │  - date              │                │   │
-│  │  │  - token            │    │                      │                │   │
-│  │  └─────────────────────┘    └─────────────────────┘                │   │
-│  └─────────────────────────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────────────────────┘
+I --> L[Users Collection]
+I --> M[Meetings Collection]
 ```
 
 ---
 
-## Technology Stack
+# Application Flow
 
-### Frontend
+```mermaid
+sequenceDiagram
 
-| Technology       | Version | Purpose                  |
-| ---------------- | ------- | ------------------------ |
-| React            | 19.2.0  | UI Framework             |
-| React Router DOM | 7.9.4   | Client-side routing      |
-| Material-UI      | 7.3.4   | UI Component Library     |
-| Socket.io-client | 4.8.1   | Real-time communication  |
-| Axios            | 1.13.1  | HTTP requests            |
-| WebRTC (Native)  | -       | Peer-to-peer video/audio |
+participant U as User
+participant FE as React Frontend
+participant BE as Express Backend
+participant DB as MongoDB
+participant S as Socket.io Server
+participant P as Peer Client
 
-### Backend
+U->>FE: Open NeoMeet
+FE->>BE: Login/Register Request
+BE->>DB: Validate User Credentials
+DB-->>BE: Return User Data
+BE-->>FE: Authentication Token
 
-| Technology | Version | Purpose               |
-| ---------- | ------- | --------------------- |
-| Node.js    | -       | JavaScript runtime    |
-| Express.js | 5.1.0   | Web framework         |
-| Socket.io  | 4.8.1   | WebSocket server      |
-| Mongoose   | 8.19.1  | MongoDB ODM           |
-| bcrypt     | 6.0.0   | Password hashing      |
-| crypto     | 1.0.1   | Token generation      |
-| dotenv     | 17.2.3  | Environment variables |
+U->>FE: Join Meeting
+FE->>S: join-call event
+S-->>P: Notify user joined
 
-### Database
+FE->>P: WebRTC Offer
+P->>FE: WebRTC Answer
 
-| Technology | Purpose                 |
-| ---------- | ----------------------- |
-| MongoDB    | NoSQL document database |
-
----
-
-## Component Architecture
-
-### Frontend Structure
-
-```
-frontend/src/
-├── App.js                    # Main app with routing
-├── index.js                  # React entry point
-├── environment.js            # API URL configuration
-│
-├── contexts/
-│   ├── AuthContext.jsx       # Authentication state & methods
-│   └── ThemeContext.jsx      # Dark/Light mode state
-│
-├── pages/
-│   ├── landing.jsx           # Public landing page
-│   ├── authentication.jsx    # Login/Register forms
-│   ├── home.jsx              # Dashboard (protected)
-│   ├── VideoMeet.jsx         # Video call interface
-│   └── history.jsx           # Meeting history
-│
-├── utils/
-│   └── withAuth.jsx          # HOC for route protection
-│
-└── styles/
-    └── videoComponent.module.css
-```
-
-### Backend Structure
-
-```
-backend/src/
-├── app.js                    # Express server & Socket.io setup
-│
-├── controllers/
-│   ├── user.controller.js    # User authentication & history
-│   └── socketManager.js      # Real-time room management
-│
-├── models/
-│   ├── user.model.js         # User schema
-│   └── meeting.model.js      # Meeting schema
-│
-└── routes/
-    └── users.routes.js       # API route definitions
+FE<->>P: Direct P2P Video Stream
 ```
 
 ---
 
-## API Architecture
+# Component Architecture
 
-### RESTful Endpoints
+```mermaid
+flowchart LR
 
-| Method | Endpoint                         | Description              |
-| ------ | -------------------------------- | ------------------------ |
-| POST   | `/api/v1/users/register`         | Register new user        |
-| POST   | `/api/v1/users/login`            | Authenticate user        |
-| POST   | `/api/v1/users/add_to_activity`  | Save meeting to history  |
-| GET    | `/api/v1/users/get_all_activity` | Get user meeting history |
+subgraph Frontend
+A[Landing Page]
+B[Authentication Page]
+C[Home Dashboard]
+D[VideoMeet Component]
+E[Meeting History Page]
+end
 
-### Socket.io Events
+subgraph ContextProviders
+F[AuthContext]
+G[ThemeContext]
+end
 
-| Event          | Direction       | Description                |
-| -------------- | --------------- | -------------------------- |
-| `join-call`    | Client → Server | Join a meeting room        |
-| `user-joined`  | Server → Client | Notify when user joins     |
-| `user-left`    | Server → Client | Notify when user leaves    |
-| `signal`       | Bidirectional   | WebRTC signaling (SDP/ICE) |
-| `chat-message` | Bidirectional   | Real-time chat messages    |
+subgraph Backend
+H[Express Server]
+I[User Controller]
+J[Socket Manager]
+end
 
----
+subgraph Database
+K[(MongoDB)]
+end
 
-## WebRTC Architecture
+A --> B
+B --> C
+C --> D
+C --> E
 
-```
-┌──────────────────┐                              ┌──────────────────┐
-│    User A        │                              │    User B        │
-│  (Peer Client)   │                              │  (Peer Client)   │
-├──────────────────┤                              ├──────────────────┤
-│  RTCPeerConnection                              │  RTCPeerConnection
-│  ┌─────────────┐ │                              │ ┌─────────────┐  │
-│  │ Local Media │ │                              │ │ Local Media │  │
-│  │   Stream    │ │                              │ │   Stream    │  │
-│  └─────────────┘ │                              │ └─────────────┘  │
-│        │         │                              │        │         │
-│        ▼         │                              │        ▼         │
-│  ┌─────────────┐ │    ICE Candidates/SDP       │ ┌─────────────┐  │
-│  │    Offer/   │◄├──────────────────────────────┤►│   Answer/   │  │
-│  │   Answer    │ │   (via Socket.io Server)     │ │    Offer    │  │
-│  └─────────────┘ │                              │ └─────────────┘  │
-│        │         │                              │        │         │
-│        ▼         │                              │        ▼         │
-│  ┌─────────────┐ │    Direct P2P Connection    │ ┌─────────────┐  │
-│  │Remote Video │◄├──────────────────────────────┤►│Remote Video │  │
-│  │   Stream    │ │    (After Negotiation)       │ │   Stream    │  │
-│  └─────────────┘ │                              │ └─────────────┘  │
-└──────────────────┘                              └──────────────────┘
-```
+F --> C
+G --> C
 
-### WebRTC Flow
+C --> H
+H --> I
+H --> J
 
-1. **Get User Media** - Access camera/microphone
-2. **Create Peer Connection** - Initialize RTCPeerConnection with STUN server
-3. **Create Offer** - Generate SDP offer
-4. **Signal via Socket.io** - Send offer through server
-5. **Create Answer** - Recipient generates SDP answer
-6. **Exchange ICE Candidates** - Network connectivity information
-7. **Establish P2P Connection** - Direct media streaming
-
----
-
-## Authentication Flow
-
-```
-┌──────────┐     ┌─────────────┐     ┌──────────────┐     ┌──────────┐
-│  Client  │     │  Express    │     │  Controller  │     │ MongoDB  │
-└────┬─────┘     └──────┬──────┘     └──────┬───────┘     └────┬─────┘
-     │                  │                   │                  │
-     │  POST /login     │                   │                  │
-     │─────────────────►│                   │                  │
-     │                  │  login()          │                  │
-     │                  │──────────────────►│                  │
-     │                  │                   │  findOne(user)   │
-     │                  │                   │─────────────────►│
-     │                  │                   │◄─────────────────│
-     │                  │                   │                  │
-     │                  │                   │  bcrypt.compare()
-     │                  │                   │─────────────────►│
-     │                  │                   │                  │
-     │                  │                   │  Generate Token  │
-     │                  │                   │  (crypto.random) │
-     │                  │                   │                  │
-     │                  │  { token }        │                  │
-     │◄─────────────────│◄──────────────────│                  │
-     │                  │                   │                  │
-     │  Store in        │                   │                  │
-     │  localStorage    │                   │                  │
-     │                  │                   │                  │
+I --> K
 ```
 
 ---
 
-## State Management
+# WebRTC Communication Architecture
 
-### Context Providers Hierarchy
+```mermaid
+flowchart LR
 
-```
-<Router>
-  <ThemeProvider>           ← Dark/Light mode state
-    <AuthProvider>          ← Authentication state
-      <App Routes />
-    </AuthProvider>
-  </ThemeProvider>
-</Router>
-```
+A[User A Browser] --> B[RTCPeerConnection]
+C[User B Browser] --> D[RTCPeerConnection]
 
-### AuthContext State
+B -->|Offer SDP| E[Socket.io Signaling Server]
+D -->|Answer SDP| E
 
-```javascript
-{
-  userData: {},                    // Current user data
-  setUserData: function,           // Update user data
-  handleLogin: function,           // Login handler
-  handleRegister: function,        // Register handler
-  getHistoryOfUser: function,      // Fetch meeting history
-  addToUserHistory: function       // Add meeting to history
-}
-```
+B <-->|ICE Candidates| D
 
-### ThemeContext State
-
-```javascript
-{
-  darkMode: boolean,               // Current theme
-  toggleTheme: function            // Toggle theme
-}
+B -->|Media Stream| D
+D -->|Media Stream| B
 ```
 
 ---
 
-## Security Architecture
+# Authentication Flow
 
-### Password Security
+```mermaid
+sequenceDiagram
 
-- **Hashing**: bcrypt with salt rounds of 10
-- **Comparison**: bcrypt.compare() for login verification
+participant Client
+participant Server
+participant Controller
+participant MongoDB
 
-### Token-Based Authentication
+Client->>Server: POST /login
+Server->>Controller: login()
 
-- **Token Generation**: crypto.randomBytes(20).toString('hex')
-- **Storage**: Server-side in MongoDB, client-side in localStorage
-- **Validation**: Token passed in query/body for protected routes
+Controller->>MongoDB: find user
+MongoDB-->>Controller: return user data
 
-### CORS Configuration
+Controller->>Controller: bcrypt.compare()
+Controller->>Controller: generate token
 
-```javascript
-{
-  origin: process.env.FRONTEND_URL || "*",
-  methods: "GET,POST,PUT,DELETE",
-  credentials: true
-}
+Controller-->>Server: token
+Server-->>Client: login success
+
+Client->>Client: store token in localStorage
 ```
 
 ---
 
-## Deployment Architecture
+# Deployment Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                        Render.com Platform                          │
-│                                                                     │
-│  ┌─────────────────────┐         ┌─────────────────────┐          │
-│  │   Frontend Service  │         │   Backend Service   │          │
-│  │  (Static Build)     │◄───────►│  (Node.js Server)   │          │
-│  │                     │  API    │                     │          │
-│  │  neomeet.onrender   │ Calls   │ neomeet-api.render  │          │
-│  └─────────────────────┘         └──────────┬──────────┘          │
-│                                             │                      │
-└─────────────────────────────────────────────┼──────────────────────┘
-                                              │
-                                              ▼
-                               ┌─────────────────────────┐
-                               │    MongoDB Atlas        │
-                               │   (Cloud Database)      │
-                               └─────────────────────────┘
+```mermaid
+flowchart TD
+
+A[User Browser] --> B[Frontend Service - Render]
+
+B --> C[Backend Service - Node.js]
+
+C --> D[MongoDB Atlas]
+
+C --> E[Socket.io Server]
+
+B --> E
 ```
 
 ---
 
-## Environment Variables
+# Technology Stack
 
-### Backend (.env)
+## Frontend
+
+| Technology | Purpose |
+|-----------|---------|
+| React | UI framework |
+| React Router | Client-side routing |
+| Material UI | Component library |
+| Socket.io Client | Real-time communication |
+| Axios | API requests |
+| WebRTC | Peer-to-peer video/audio |
+
+---
+
+## Backend
+
+| Technology | Purpose |
+|-----------|---------|
+| Node.js | Runtime environment |
+| Express.js | Backend framework |
+| Socket.io | WebSocket communication |
+| Mongoose | MongoDB ODM |
+| bcrypt | Password hashing |
+| crypto | Token generation |
+| dotenv | Environment variables |
+
+---
+
+## Database
+
+| Technology | Purpose |
+|-----------|---------|
+| MongoDB | NoSQL database |
+| MongoDB Atlas | Cloud database hosting |
+
+---
+
+# API Architecture
+
+## REST Endpoints
+
+| Method | Endpoint | Description |
+|------|---------|-------------|
+| POST | `/api/v1/users/register` | Register user |
+| POST | `/api/v1/users/login` | Login user |
+| POST | `/api/v1/users/add_to_activity` | Save meeting history |
+| GET | `/api/v1/users/get_all_activity` | Retrieve meeting history |
+
+---
+
+## Socket.io Events
+
+| Event | Direction | Description |
+|------|-----------|-------------|
+| join-call | Client → Server | Join meeting room |
+| user-joined | Server → Client | Notify new participant |
+| user-left | Server → Client | Notify user exit |
+| signal | Bidirectional | WebRTC signaling |
+| chat-message | Bidirectional | Real-time chat |
+
+---
+
+# Data Flow Summary
+
+1. User registers or logs in through REST API
+2. Backend validates credentials using MongoDB
+3. User joins a meeting room via Socket.io
+4. WebRTC signaling occurs through Socket.io server
+5. Peer-to-peer connection is established
+6. Video and audio streams are transmitted directly between peers
+7. Meeting activity is stored in MongoDB
+
+---
+
+# Scalability Considerations
+
+- Stateless backend allows horizontal scaling
+- Redis adapter can be added for Socket.io clustering
+- MongoDB indexes improve query performance
+- WebRTC P2P optimized for small group meetings
+- Load balancing can distribute backend traffic
+
+---
+
+# Environment Variables
+
+## Backend
 
 ```
 PORT=8000
-MONGODB_URI=mongodb+srv://...
-FRONTEND_URL=https://your-frontend-url.com
+MONGODB_URI=mongodb+srv://your-mongodb-uri
+FRONTEND_URL=https://your-frontend-url
 ```
 
-### Frontend (.env)
+## Frontend
 
 ```
-REACT_APP_API_URL=https://your-backend-url.com
-REACT_APP_SOCKET_URL=https://your-backend-url.com
+REACT_APP_API_URL=https://your-backend-url
+REACT_APP_SOCKET_URL=https://your-backend-url
 ```
 
 ---
 
-## Data Flow Summary
+# Conclusion
 
-1. **User Registration/Login** → REST API → MongoDB
-2. **Video Call Join** → Socket.io → Room Management
-3. **WebRTC Signaling** → Socket.io Events → P2P Connection
-4. **Chat Messages** → Socket.io → Broadcast to Room
-5. **Meeting History** → REST API → MongoDB
+NeoMeet combines **MERN stack architecture**, **WebRTC peer-to-peer streaming**, and **Socket.io real-time communication** to deliver a scalable and responsive video conferencing solution.
 
----
-
-## Scalability Considerations
-
-- **Horizontal Scaling**: Stateless backend with load balancing
-- **Database Indexing**: Unique index on username
-- **WebRTC Limitations**: P2P scales well for small groups
-- **Socket.io Scaling**: Can use Redis adapter for multi-instance
-
----
-
-_Architecture Document - NeoMeet Video Conferencing Application_
+The modular architecture ensures **maintainability, scalability, and efficient real-time communication**.
